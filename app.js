@@ -79,7 +79,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", () => {
+app.get("/", (req, res) => {
   res.render("/listings/index.ejs", { allListings });
 });
 
