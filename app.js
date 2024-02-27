@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const Listing = require("./models/listing");
 const ExpressError = require("./utils/ExpressError.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -78,12 +77,6 @@ app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
   next();
-});
-
-app.get("/", async (req, res) => {
-  const allListings = await Listing.find({});
-
-  res.render("/listings/index.ejs", { allListings });
 });
 
 app.use("/listings", listingRouter);
